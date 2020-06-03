@@ -13,13 +13,17 @@ var users = require('./routes/users');
 var app = express();
 var server = http.Server(app);
 let ioSocket = io.listen(server);
-ioSocket.on("connection", () => {
-    console.log("User is connected");
+
+ioSocket.on("connection", (socket) => {
+    console.log("User is connected");    
+    socket.on("message", (msg) => {
+      console.log("Received msg");
+      console.log(msg);
+      socket.broadcast.emit('message', msg);
+    })
 });
-ioSocket.on("message", (msg) => {
-    console.log("Received msg");
-    console.log(msg);
-});
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
