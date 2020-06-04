@@ -5,13 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var io = require('socket.io');
-var http = require('http');
+var https = require('https');
+var fs = require('fs');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-var server = http.Server(app);
+var server = https.createServer({
+  key: fs.readFileSync('../cert/server.key'),
+  cert: fs.readFileSync('../cert/server.crt')
+}, app);
 let ioSocket = io.listen(server);
 
 ioSocket.on("connection", (socket) => {

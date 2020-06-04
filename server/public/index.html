@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="./js/socket.io.js"></script>
+    </head>
+    <body>
+        <div>WebRTC Demo</div>
+        <div>
+            <div>
+                <div>Local</div>
+                <video id="localVideo" autoplay muted playsinline width="50" ></video>
+            </div>
+
+            <div>
+                <div>Remote</div>
+                <video id="remoteVideo" autoplay muted playsinline width="50" ></video>
+            </div>
+
+
+            <div>
+                <button id="startButton" onclick="start()">Start</button>
+                <button id="callButton" onclick="call()">Call</button>
+                <button id="hangupButton">Hang Up</button>
+            </div>
+
+
+            <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+            <script src="./js/main.js"></script>
+        </div>
+    </body>
+</html>
